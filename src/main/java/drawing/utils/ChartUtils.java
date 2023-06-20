@@ -1,7 +1,6 @@
 package drawing.utils;
 
 import drawing.enums.AxisType;
-import javafx.util.Pair;
 import lombok.experimental.UtilityClass;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.LogAxis;
@@ -33,7 +32,6 @@ public class ChartUtils {
     private final List<Color> colors = Arrays.asList(Color.DARK_GRAY, Color.RED, Color.CYAN, Color.CYAN, Color.GREEN, Color.ORANGE, Color.YELLOW, Color.MAGENTA);
     private final List<Double> y = Arrays.asList(0.957372792, 0.728051603, 0.510632095, 0.270665207, 0.100624261, 0.04005924);
     private final List<Double> x = Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 6.0);
-    private final Pair<List<Double>, List<Double>> publicationData = new Pair<>(x, y);
 
     public void saveChart(JFreeChart jFreeChart, String pathname) {
         BufferedImage objBufferedImage = jFreeChart.createBufferedImage(600, 800);
@@ -115,18 +113,5 @@ public class ChartUtils {
             }
         }
         return renderer;
-    }
-
-    public Pair<List<Double>, List<Double>> extractAxis(List<Pair<Double, Double>> pair) {
-        List<Double> xs = new ArrayList<>();
-        List<Double> ys = new ArrayList<>();
-        System.out.println("\n");
-        pair.forEach(a -> {
-            xs.add(a.getKey());
-            ys.add(a.getValue());
-            System.out.println(a.getKey().toString().replace(".", ",") + "\t" + a.getValue().toString().replace(".", ","));
-        });
-        System.out.println("\n");
-        return new Pair<>(xs, ys);
     }
 }

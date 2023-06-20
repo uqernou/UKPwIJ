@@ -2,15 +2,12 @@ package drawing;
 
 import drawing.enums.AxisType;
 import drawing.utils.ChartUtils;
-import javafx.util.Pair;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import java.io.File;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,15 +19,6 @@ public class DrawChart {
     private XYSeriesCollection collection;
     private XYSeries clinicalData;
 
-    public void saveContent(String pathname, List<Pair<Double, Double>> pair) {
-        XYSeriesCollection collection = new XYSeriesCollection();
-        XYSeries clinicalData = ChartUtils.createPublicationData();
-        XYSeries simulationData = ChartUtils.createSeries(ChartUtils.extractAxis(pair).getKey(), ChartUtils.extractAxis(pair).getValue(), "MC Simulation");
-        ChartUtils.addSeries(clinicalData, collection);
-        ChartUtils.addSeries(clinicalData, collection);
-        JFreeChart chart = ChartUtils.createPlot(collection, AxisType.LINEAR, AxisType.LOG10, xLabel, yLabel, title);
-        ChartUtils.saveChart(chart, pathname);
-    }
     public JFreeChart createChart() {
         collection = new XYSeriesCollection();
         clinicalData = ChartUtils.createPublicationData();
